@@ -16,9 +16,9 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="navbar" style="display: none;">
+  <nav class="navbar">
     <div class="navbar-left">
-      <button id="toggle-sidebar" class="hamburger">☰</button>
+      <button id="hamburger" class="hamburger">☰</button>
       <h1>💬 RM Chat</h1>
     </div>
     <div class="navbar-right" id="navbar-user">
@@ -41,7 +41,9 @@
 
     <!-- Chat area -->
     <div class="chat-area">
+
       <div class="messages" id="messages"></div>
+      <div class="typing-status" id="typing-status"></div>
       <div class="message-input">
         <input type="text" id="message-input" placeholder="Type a message..." />
         <button id="send-btn">Send</button>
@@ -63,5 +65,14 @@
 
   <script src="firebase-config.js"></script>
   <script src="app.js"></script>
+  <script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.querySelector('.sidebar');
+
+  hamburger.onclick = () => {
+    sidebar.classList.toggle('open');
+  };
+</script>
 </body>
+
 </html>

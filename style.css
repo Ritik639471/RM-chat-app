@@ -16,6 +16,7 @@ body {
   height: 60px;
   padding: 0 20px;
   color: #fff;
+  z-index: 2001; /* Ensure navbar is above sidebar */
 }
 
 .navbar h1 {
@@ -274,4 +275,11 @@ body.dark .sidebar ul li:hover {
   font-size: 24px;
   cursor: pointer;
   margin-right: 10px;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
+  }
 }

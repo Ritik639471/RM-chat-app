@@ -190,3 +190,12 @@ if (emojiBar) {
     }
   });
 }
+
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.querySelector('.sidebar');
+
+if (hamburger && sidebar) {
+  hamburger.onclick = () => {
+    sidebar.classList.toggle('active');
+  };
+}
