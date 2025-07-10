@@ -1,12 +1,15 @@
+// Replace with YOUR Firebase config:
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCv7aHlIcVFefxcyS3B882R8z-oC19jEm8",
+  authDomain: "rm-chat-app-p.firebaseapp.com",
+  databaseURL: "https://rm-chat-app-p-default-rtdb.firebaseio.com",
+  projectId: "rm-chat-app-p",
+  storageBucket: "rm-chat-app-p.firebasestorage.app",
+  messagingSenderId: "409758732720",
+  appId: "1:409758732720:web:fa97c10967ed91ce110675"
 };
 
 firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+window.database = firebase.database();
+window.auth = firebase.auth();
+window.googleProvider = new firebase.auth.GoogleAuthProvider();
