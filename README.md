@@ -48,7 +48,7 @@ cd RM-chat-app
 
 Replace the placeholder in **\`firebase-config.js\`**:
 
-\`\`\`javascript
+```javascript
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -62,7 +62,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 window.database = firebase.database();
 window.auth = firebase.auth();
-\`\`\`
+```
 
 ---
 
@@ -80,14 +80,14 @@ For **Netlify**:
 
 ## 🔒 Example Firebase Rules (Development)
 
-\`\`\`json
+```json
 {
   "rules": {
     ".read": true,
     ".write": "auth != null"
   }
 }
-\`\`\`
+```
 
 ---
 
