@@ -11,10 +11,12 @@ const messagesDiv = document.getElementById('messages');
 const roomNameSpan = document.getElementById('room-name');
 const onlineUsersList = document.getElementById('online-users');
 const typingStatus = document.getElementById('typing-status');
+const emojiBar = document.getElementById('emoji-bar');
 
 let username = '';
 let avatar = '';
 let room = 'general';
+
 
 googleLoginBtn.onclick = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -30,17 +32,49 @@ googleLoginBtn.onclick = () => {
       loadRooms();
       switchRoom(room);
       updatePresence();
+      updateNavbar();
     })
     .catch(console.error);
 };
+
+
+auth.onAuthStateChanged(user => {
+  if (user) {
+    username = user.displayName;
+    avatar = user.photoURL || `https://avatars.dicebear.com/api/initials/${username}.svg`;
+    if (loginDiv && chatDiv) {
+      loginDiv.style.display = 'none';
+      chatDiv.style.display = 'flex';
+    }
+    updateNavbar();
+    loadRooms();
+    switchRoom(room);
+    updatePresence();
+  } else {
+    loginDiv.style.display = 'flex';
+    chatDiv.style.display = 'none';
+  }
+});
+
 
 signOutBtn.onclick = () => {
   auth.signOut().then(() => location.reload());
 };
 
+
 toggleThemeBtn.onclick = () => {
   document.body.classList.toggle('dark');
 };
+
+
+function updateNavbar() {
+  const navbarUser = document.getElementById('navbar-user');
+  navbarUser.innerHTML = `
+    <span>${username}</span>
+    <img src="${avatar}" alt="avatar" />
+  `;
+}
+
 
 function loadRooms() {
   database.ref('rooms').on('value', snapshot => {
@@ -58,6 +92,7 @@ function loadRooms() {
     });
   });
 }
+
 
 addRoomBtn.onclick = () => {
   const newRoom = prompt("Enter new room name:");
@@ -77,6 +112,7 @@ addRoomBtn.onclick = () => {
   }
 };
 
+
 sendBtn.onclick = () => {
   const message = messageInput.value.trim();
   if (message) {
@@ -90,6 +126,7 @@ sendBtn.onclick = () => {
     messageInput.value = '';
   }
 };
+
 
 function switchRoom(selectedRoom) {
   room = selectedRoom;
@@ -118,6 +155,7 @@ function switchRoom(selectedRoom) {
   });
 }
 
+
 function updatePresence() {
   const onlineRef = database.ref(`online/${room}/${username}`);
   onlineRef.set(true);
@@ -134,16 +172,21 @@ function updatePresence() {
   });
 }
 
-messageInput.addEventListener('input', () => {
-  database.ref(`typing/${room}/${username}`).set(true);
-  clearTimeout(window.typingTimeout);
-  window.typingTimeout = setTimeout(() => {
-    database.ref(`typing/${room}/${username}`).remove();
-  }, 1000);
-});
 
-document.getElementById('emoji-bar').addEventListener('click', e => {
-  if (e.target.tagName === 'SPAN') {
-    messageInput.value += e.target.textContent;
-  }
-});
+if (messageInput) {
+  messageInput.addEventListener('input', () => {
+    database.ref(`typing/${room}/${username}`).set(true);
+    clearTimeout(window.typingTimeout);
+    window.typingTimeout = setTimeout(() => {
+      database.ref(`typing/${room}/${username}`).remove();
+    }, 1000);
+  });
+}
+
+if (emojiBar) {
+  emojiBar.addEventListener('click', e => {
+    if (e.target.tagName === 'SPAN') {
+      messageInput.value += e.target.textContent;
+    }
+  });
+}

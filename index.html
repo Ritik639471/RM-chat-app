@@ -2,42 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Realtime Multi-Room Chat App</title>
+  <title>RM Chat - Realtime Multi-Room</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
+
+  <!-- Login page -->
   <div id="login">
     <h2>Sign In</h2>
     <button id="google-login">Sign in with Google</button>
   </div>
 
-  <div id="chat" style="display:none;">
-    <div id="sidebar">
-      <h3>Rooms</h3>
+  <!-- Navbar -->
+  <nav class="navbar" style="display: none;">
+    <div class="navbar-left">
+      <button id="toggle-sidebar" class="hamburger">☰</button>
+      <h1>💬 RM Chat</h1>
+    </div>
+    <div class="navbar-right" id="navbar-user">
+      <!-- User avatar & sign out will go here -->
+    </div>
+  </nav>
+
+  <!-- Main app layout -->
+  <div id="chat" class="app" style="display: none;">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Room: <span id="room-name"></span></h2>
       <ul id="room-list"></ul>
       <button id="add-room">+ Add Room</button>
-      <h3>Online</h3>
+      <h2>Online</h2>
       <ul id="online-users"></ul>
       <button id="sign-out">Sign Out</button>
       <button id="toggle-theme">🌙 Toggle Theme</button>
     </div>
 
-    <div id="main">
-      <h2>Room: <span id="room-name"></span></h2>
-      <div id="messages"></div>
-      <p id="typing-status"></p>
-      <input type="text" id="message-input" placeholder="Type a message..." />
-      <button id="send-btn">Send</button>
-      <div id="emoji-bar">
-        <span>😊</span> <span>😂</span> <span>❤️</span> <span>👍</span> <span>🎉</span>
+    <!-- Chat area -->
+    <div class="chat-area">
+      <div class="messages" id="messages"></div>
+      <div class="message-input">
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="send-btn">Send</button>
+        <div id="emoji-bar">
+          <span>😊</span>
+          <span>😂</span>
+          <span>❤️</span>
+          <span>👍</span>
+          <span>🎉</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
   <script src="firebase-config.js"></script>
   <script src="app.js"></script>
