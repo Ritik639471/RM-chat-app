@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Real-Time Chat App (Pro)</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="login">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="username" placeholder="Your name" />
+        <h3>Pick a Room</h3>
+        <select id="login-room">
+            <option value="" disabled selected>Select a room</option>
+        </select>
+        <input type="text" id="new-room" placeholder="Or enter new room name" />
+
+        <button id="join-btn">Join Chat</button>
+    </div>
+
+    <div id="chat" style="display: none;">
+        <div id="container">
+            <div id="sidebar">
+                <h3>Rooms</h3>
+                <select id="room-select"></select>
+                <button id="add-room">+ Add Room</button>
+
+                <h3>Online Users</h3>
+                <ul id="online-users"></ul>
+            </div>
+
+            <div id="main-chat">
+                <div id="chat-header">
+                    <h2>Room: <span id="room-name"></span></h2>
+                    <button id="theme-toggle">🌙</button>
+                </div>
+
+                <div id="messages"></div>
+                <div id="typing-status"></div>
+
+                <div id="emoji-bar">
+                    <button>😊</button>
+                    <button>😂</button>
+                    <button>👍</button>
+                    <button>❤️</button>
+                </div>
+
+                <div id="input-bar">
+                    <input type="text" id="message-input" placeholder="Type a message..." />
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase CDN compat version -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

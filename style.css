@@ -1,0 +1,120 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  height: 100vh;
+  margin: 0;
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 100px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#container {
+  display: flex;
+  height: 100vh;
+}
+
+#sidebar {
+  width: 200px;
+  background: #f8f8f8;
+  padding: 15px;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+#main-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+#chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#messages {
+  flex: 1;
+  overflow-y: scroll;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-tile {
+  background: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 5px 0;
+  max-width: 70%;
+}
+
+.own-message {
+  background: #d1e7dd;
+  align-self: flex-end;
+}
+
+#emoji-bar button {
+  margin-right: 5px;
+}
+
+#input-bar {
+  display: flex;
+  gap: 10px;
+}
+
+#message-input {
+  flex: 1;
+  padding: 8px;
+}
+
+#send-btn {
+  padding: 8px 12px;
+}
+
+ul {
+  padding-left: 15px;
+}
+
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark #login, 
+body.dark #sidebar,
+body.dark #main-chat {
+  background: #1e1e1e;
+}
+
+body.dark #messages {
+  background: #222;
+}
+
+body.dark input {
+  background: #333;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+body.dark .message-tile {
+  background: #333;
+}
+
+body.dark .own-message {
+  background: #22543d;
+}
+
+#room-select {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
